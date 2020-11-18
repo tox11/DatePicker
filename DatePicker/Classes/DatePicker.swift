@@ -61,7 +61,7 @@ public class DatePicker {
     }
 
     // Setup with a min and max date
-    public func setup(beginWith: Date? = nil, min:Date, max: Date, selected: @escaping(_ selected: Bool, _ date: Date?) -> Void) {
+    public func setup(beginWith: Date? = nil, min:Date, max: Date, selectButtonTitle: String? = nil, selected: @escaping(_ selected: Bool, _ date: Date?) -> Void) {
         vc.mode = .Basic
         if let begin = beginWith {
             vc.set(date: begin)
@@ -71,11 +71,12 @@ public class DatePicker {
         vc.mode = .MinMax
         vc.maxDate = max
         vc.minDate = min
+        vc.selectButtonTitle = selectButtonTitle ?? "Select"
         vc.callBack = selected
     }
 
     // Setup without years
-    public func setupYearless(minMonth: Int? = nil, minDay: Int? = nil, maxMonth: Int? = nil, maxDay: Int? = nil, selected: @escaping(_ selected: Bool, _ month: Int?,_ day: Int?) -> Void) {
+    public func setupYearless(minMonth: Int? = nil, minDay: Int? = nil, maxMonth: Int? = nil, maxDay: Int? = nil, selectButtonTitle: String? = nil, selected: @escaping(_ selected: Bool, _ month: Int?,_ day: Int?) -> Void) {
         vc.minDay = minDay ?? 1
         vc.minMonth = minMonth ?? 1
         vc.maxMonth = maxMonth ?? 12
@@ -83,6 +84,7 @@ public class DatePicker {
         vc.day = minDay ?? 1
         vc.month = minMonth ?? 1
         vc.mode = .Yearless
+        vc.selectButtonTitle = selectButtonTitle ?? "Select"
         vc.yearlessCallBack = selected
     }
 

@@ -30,6 +30,8 @@ public class PickerViewController: UIViewController {
     var yearsIndexPath: IndexPath?
     var daysIndexPath: IndexPath?
     var buttonIndexPath: IndexPath?
+    
+    var selectButtonTitle: String = "Select"
 
     // MARK: Variables
     var loading: Bool = true
@@ -642,7 +644,7 @@ extension PickerViewController: UICollectionViewDelegate, UICollectionViewDataSo
         default:
             self.buttonIndexPath = indexPath
             let cell = getButtonCell(indexPath: indexPath)
-            cell.setup(date: DatePickerHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year)!) {
+            cell.setup(date: DatePickerHelper.shared.dateFrom(day: self.day, month: self.month, year: self.year)!, selectedButtonTitle: selectButtonTitle) {
                 self.sendResult()
             }
             return cell

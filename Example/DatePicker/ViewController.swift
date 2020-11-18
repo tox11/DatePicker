@@ -43,13 +43,24 @@ class ViewController: UIViewController {
         self.label.alpha = 0
         let picker = DatePicker()
         
-        picker.setup(beginWith: Date()) { (selected, date) in
+        let minDate = DatePickerHelper.shared.dateFrom(day: 18, month: 08, year: 1990)!
+        let maxDate = DatePickerHelper.shared.dateFrom(day: 18, month: 08, year: 2030)!
+        
+        picker.setup(beginWith: Date(), min: minDate, max: maxDate, selectButtonTitle: "new button title") { (selected, date) in
             if selected, let selectedDate = date {
                 print(selectedDate.string())
             } else {
                 print("Cancelled")
             }
         }
+        
+//        picker.setup(beginWith: Date()) { (selected, date) in
+//            if selected, let selectedDate = date {
+//                print(selectedDate.string())
+//            } else {
+//                print("Cancelled")
+//            }
+//        }
 
         picker.show(in: self)
             
